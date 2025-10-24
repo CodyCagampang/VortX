@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  style.
+    table { 
+        width:100%; 
+        border-collapse:collapse;
+         margin:1rem 0; 
+    }
+
+    th, td { 
+        border:1px solid #ccc;
+         padding:.5rem; 
+         text-align:center; 
+         }
+
+    th {
+         background: blue;
+          }
+
+  h1= pageHeader.title
+  p= pageHeader.strapline
+
+  table
+    thead
+      tr
+        th Team
+        th Name
+        th Height
+        th Position
+        th Age
+    tbody
+      each team in teams
+        if team.players && team.players.length
+          each p in team.players
+            tr
+              td= team.name
+              td= p.name
+              td= p.height
+              td= p.position
+              td= p.age
+        else
+          tr
+            td(colspan='5') #{team.name}: No players listed.

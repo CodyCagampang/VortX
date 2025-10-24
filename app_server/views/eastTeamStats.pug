@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  .container.py-4
+    h1.h3.text-center.mb-3
+      i.fa-solid.fa-basketball.text-warning.me-2
+      | #{pageHeader.title}
+    p.text-center.text-muted.mb-4= pageHeader.strapline
+
+    .table-responsive
+      table.table.table-striped.table-hover.table-bordered.align-middle
+        thead.table-dark
+          tr.text-center
+            th Team
+            th Seeding
+            th Conference
+            th Wins
+            th Losses
+            th Win %
+        tbody
+          each e in stats
+            tr.text-center
+              td= e.team
+              td= e.seeding
+              td= e.conference
+              td= e.wins
+              td= e.losses
+              td= e.winPct
