@@ -46,3 +46,89 @@ td, th {
   border: 1px solid #ff7f11;
   text-align: center;
 }
+
+
+/* Login CSS */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  background: #020024;
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 100%, rgba(0, 212, 255, 1) 100%); /* https://cssgradient.io/ */
+}
+
+.login-box {
+  background-color: #0b3954;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(none);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  color: #fff;
+}
+
+.login-box h1 {
+  font-family: 'Lobster', cursive;
+  color: #ff7f11;
+  margin-bottom: 0.3em;
+}
+
+.login-box p {
+  font-size: 20px;
+  margin-bottom: 1.5em;
+}
+
+.login-box label {
+  display: block;
+  text-align: left;
+  margin-bottom: 0.3em;
+  font-weight: bold;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1em;
+  border: none;
+  border-radius: 6px;
+  background-color: #1a659e;
+  color: white;
+}
+
+.login-box input::placeholder {
+  color: #ccc;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 10px;
+  background-color: #ff7f11;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.login-box button:hover {
+  background-color: #ff9f1c;
+}
+
+.register-link {
+  margin-top: 1em;
+  font-size: 0.95em;
+}
+
+.register-link a {
+  color: #ff7f11;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
