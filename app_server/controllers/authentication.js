@@ -4,7 +4,8 @@ const register = function(req, res) {
         pageHeader: {
             title: 'VortX Register',
             strapline: 'Join VortX Today!'
-        }
+        },
+        hideNavbar: true
     })
 }
 
@@ -15,7 +16,8 @@ const login = function(req, res) {
         pageHeader: {
             title: 'VortX Login',
             strapline: 'Login to VortX'
-        }
+        },
+        hideNavbar: true
     });
 };
 
