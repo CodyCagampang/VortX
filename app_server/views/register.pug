@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  .register-container
+    .login-box
+      h1= pageHeader.title
+      p= pageHeader.strapline
+
+      form(method='POST', action='/register')
+        label(for='firstName') Enter First Name:
+        input#username(type='text', name='firstName', placeholder='Enter First Name', required)
+ 
+        label(for='lastName') Enter Last Name:
+        input#password(type='text', name='lastName', placeholder='Enter Surname', required)
+
+        label(for='email') Enter Email:
+        input#email(type='email', name='email', placeholder='Enter Email', required)
+
+        label(for='password') Enter Password: 
+        input#password(type='password', name='password', placeholder='Enter Password', required)
+        button(type='submit') Register
+
+      p.register-link
+        | Have an account? 
+        a(href='/login') Login here

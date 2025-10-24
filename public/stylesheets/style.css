@@ -132,3 +132,12 @@ td, th {
   text-decoration: underline;
 }
 
+/* Register Styling */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50em;
+  background: #020024;
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 100%, rgba(0, 212, 255, 1) 100%); /* https://cssgradient.io/ */
+}
