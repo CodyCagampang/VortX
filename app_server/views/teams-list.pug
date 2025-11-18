@@ -1,44 +1,50 @@
 extends layout
 
 block content
-  style.
-    table { 
-        width:100%; 
-        border-collapse:collapse;
-         margin:1rem 0; 
-    }
-
-    th, td { 
-        border:1px solid #ccc;
-         padding:.5rem; 
-         text-align:center; 
-         }
-
-    th {
-         background: blue;
-          }
-
   h1= pageHeader.title
   p= pageHeader.strapline
 
+  h2= teams[0].name
   table
     thead
       tr
-        th Team
         th Name
-        th Height
+        th Height  
         th Position
         th Age
     tbody
-      each team in teams
-        if team.players && team.players.length
-          each p in team.players
-            tr
-              td= team.name
-              td= p.name
-              td= p.height
-              td= p.position
-              td= p.age
-        else
-          tr
-            td(colspan='5') #{team.name}: No players listed.
+      each player in teams[0].players
+        tr
+          td= player.name
+          td= player.height
+          td= player.position
+          td= player.age
+
+  button(onclick="prev()") Back
+  button(onclick="next()") Next
+
+  script.
+    let n = 0
+    const teams = !{JSON.stringify(teams)} // Used ChatGPT to track each team and loop back and forth
+    
+    function next() {
+      if (n < teams.length - 1) {
+        n++
+        show()
+      }
+    }
+    
+    function prev() {
+      if (n > 0) {
+        n--
+        show()
+      }
+    }
+    
+    function show() {
+      document.querySelector('h2').textContent = teams[n].name
+      const tbody = document.querySelector('tbody')
+      tbody.innerHTML = teams[n].players.map(p => 
+        `<tr><td>${p.name}</td><td>${p.height}</td><td>${p.position}</td><td>${p.age}</td></tr>`
+      ).join('')
+    }
