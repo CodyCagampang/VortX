@@ -24,39 +24,37 @@ block content
   button(onclick="next()") Next
 
   script.
-    let n = 0
-    const teams = !{JSON.stringify(teams)} // Used ChatGPT to track each team and loop back and forth
-    
+    let n = 0;
+    const teams = !{JSON.stringify(teams)}; // pass data to JS
+
     function next() {
       if (n < teams.length - 1) {
-        n++
-        show()
+        n++;
+        show();
       }
     }
-    
+
     function prev() {
       if (n > 0) {
-        n--
-        show()
+        n--;
+        show();
       }
     }
-    
+
     function show() {
       document.querySelector('h2').textContent = teams[n].name;
+
       const tbody = document.querySelector('tbody');
-
       tbody.innerHTML = '';
-
 
       for (let p of teams[n].players) {
         const row = document.createElement('tr');
-
         row.innerHTML = `
-           <td>${p.name}</td>
-           <td>${p.height}</td>
-           <td>${p.position}</td>
-           <td>${p.age}</td> `;
-
+          <td>${p.name}</td>
+          <td>${p.height}</td>
+          <td>${p.position}</td>
+          <td>${p.age}</td>
+        `;
         tbody.appendChild(row);
-  }
-}
+      }
+    }

@@ -1,9 +1,9 @@
 const eastTeamStats = function (req, res) {
     res.render('eastTeamStats', {
-        title: 'NBA Eastern Standings',
+        title: 'Eastern Conference Standings',
         pageHeader: {
-            title: '2025 NBA Standings',
-            strapline: 'Easter Conference'
+            title: 'Eastern Conference Standings',
+            strapline: '2025 Season Statistics'
         },
 
         stats: [

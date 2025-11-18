@@ -1,9 +1,9 @@
 const westTeamStats = function (req, res) {
     res.render('westTeamStats', {
-        title: 'NBA Team Standings',
+        title: 'Western Conference Standings',
         pageHeader: {
-            title: 'NBA 2025 Stats',
-            strapline: 'Western Team Standings'
+            title: 'Western Conference Standings',
+            strapline: '2025 Season Statistics'
         },
 
         stats: [

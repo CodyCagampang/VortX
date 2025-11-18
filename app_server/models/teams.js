@@ -41,11 +41,6 @@ const teamSchema = new mongoose.Schema({
 
     coach: String,
     
-    wins, losses: {
-        type: number,
-        min: 0,
-        max: 82
-    },
 
     players: [playerSchema]
 

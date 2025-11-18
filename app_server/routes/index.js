@@ -5,7 +5,9 @@ const ctrlOthers = require('../controllers/others');
 const ctrlTeams = require('../controllers/teamsList');
 const ctrlWestStats = require('../controllers/westTeamStats');
 const ctrlEastStats = require('../controllers/eastTeamStats');
-const ctrlAuthentication = require('../controllers/authentication');
+const ctrlRegister = require('../controllers/register');
+const ctrlLogin = require('../controllers/login');
+
 /* Display teams on front page */
 router.get('/', ctrlTeams.teamsList);
 
@@ -15,11 +17,9 @@ router.get('/stats/west', ctrlWestStats.westTeamStats);
 /* Display Win/Loss record of Eastern Conference Teams */
 router.get('/stats/east', ctrlEastStats.eastTeamStats);
 
-/* Display Register Page */
-router.get('/register', ctrlAuthentication.register);
-
-/* Display Login Page */
-router.get('/login', ctrlAuthentication.login);
+/* Login/Register Page */
+router.get('/login', ctrlLogin.login);
+router.get('/register', ctrlRegister.register);
 
 /* Other pages */
 router.get('/about', ctrlOthers.about);
