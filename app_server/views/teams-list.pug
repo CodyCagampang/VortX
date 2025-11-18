@@ -42,9 +42,21 @@ block content
     }
     
     function show() {
-      document.querySelector('h2').textContent = teams[n].name
-      const tbody = document.querySelector('tbody')
-      tbody.innerHTML = teams[n].players.map(p => 
-        `<tr><td>${p.name}</td><td>${p.height}</td><td>${p.position}</td><td>${p.age}</td></tr>`
-      ).join('')
-    }
+      document.querySelector('h2').textContent = teams[n].name;
+      const tbody = document.querySelector('tbody');
+
+      tbody.innerHTML = '';
+
+
+      for (let p of teams[n].players) {
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+           <td>${p.name}</td>
+           <td>${p.height}</td>
+           <td>${p.position}</td>
+           <td>${p.age}</td> `;
+
+        tbody.appendChild(row);
+  }
+}
