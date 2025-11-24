@@ -1,4 +1,11 @@
 const request = require('request');
+const apiOptions = {
+  server : 'http://localhost:3000'
+};
+if (process.env.NODE_ENV === 'production') {
+  apiOptions.server = 'https://vortxdb.onrender.com';
+}
+
 const teamsList = function (req, res) {
     res.render('teams-list', {
         title: 'VortX - The most reliable basketball database!',
