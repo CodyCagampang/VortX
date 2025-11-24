@@ -28,3 +28,4 @@ node_modules
 
 # Debug log from npm
 npm-debug.log
+mongosh-2.5.9-win32-x64/

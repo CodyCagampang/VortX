@@ -15,7 +15,7 @@ const playerSchema = new mongoose.Schema({
 
     position: {
         type: String,
-        enum: ['PG', 'SG', 'SF', 'PF', 'C'], // https://masteringjs.io/tutorials/mongoose/enum
+        enum: ['PG', 'SG', 'SF', 'PF', 'C', 'G', 'F', 'G/F', 'F/C', 'C/F'], // https://masteringjs.io/tutorials/mongoose/enum
         required: true
     },
 
@@ -28,6 +28,8 @@ const playerSchema = new mongoose.Schema({
 });
 
 const teamSchema = new mongoose.Schema({ 
+    _id: Number,
+
     name: { 
         type: String,
         required: true,

@@ -12,9 +12,14 @@
     "express": "~4.14.0",
     "express-generator": "^4.16.1",
     "mongodb": "^7.0.0",
-    "mongoose": "^8.19.3",
+    "mongoose": "^9.0.0",
     "morgan": "~1.7.0",
     "pug": "~2.0.0-beta6",
+    "request": "^2.88.2",
     "serve-favicon": "~2.3.0"
+  },
+  "engines": {
+    "node": ">=18",
+    "npm": ">=9"
   }
 }

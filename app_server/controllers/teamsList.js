@@ -1,3 +1,4 @@
+const request = require('request');
 const teamsList = function (req, res) {
     res.render('teams-list', {
         title: 'VortX - The most reliable basketball database!',
