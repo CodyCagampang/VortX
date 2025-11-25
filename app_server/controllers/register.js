@@ -17,6 +17,34 @@ const register = function(req, res){
   });
 };
 
+const doRegister = function(req, res){
+    const path = '/api/register';
+
+    const requiredData = {
+      username: req.body.username,
+      password: req.body.password
+    };
+
+    const requestOptions = {
+        url : apiOptions.server + path,
+        method : 'POST',
+        json: requiredData
+    };
+
+    request(requestOptions, function(err, response, body) {
+      if(response.statusCode === 201) {
+        return res.redirect('/login'); // ChatGPT used to redirect to the login page
+      } else {
+        return res.render('register', {
+          title: 'Register for VortX',
+          hideNavbar: true,
+          error: body.message
+        });
+      }
+    });
+};
+
 module.exports = {
-  register
+  register,
+  doRegister
 };

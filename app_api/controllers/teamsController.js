@@ -2,10 +2,28 @@ const mongoose = require('mongoose');
 const Team = mongoose.model('Team');
 
 const teamsList = function (req, res) {
-  res
-    .status(200)
-    .json({ "status": "success" });
+  Team
+   .find()
+   .then((teams) => {
+     if(!teams || teams.length === 0) {
+      return res
+       .status(200)
+       .json([]);
+     }
+
+     return res
+       .status(200)
+       .json(teams);
+   })
+
+   .catch((err) => {
+      console.log(err);
+      return res
+        .status(500)
+        .json({ message: "Error retrieving teams" });
+    });
 };
+
 
 const teamsCreate = function (req, res) {
   res

@@ -18,6 +18,4 @@ mongoose.connection.on("disconnected", () => {
 
 // IMPORTANT: load your models
 require(path.join(__dirname, 'teams.js')); // ChatGPT to fix silent errors
-
-
-//require('./users'); // optional
+require('./users'); // optional
