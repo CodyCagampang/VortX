@@ -7,17 +7,22 @@ block content
       p= pageHeader.strapline
 
       form(method='POST', action='/register')
-        label(for='firstName') Enter First Name:
-        input#username(type='text', name='firstName', placeholder='Enter First Name', required)
- 
-        label(for='lastName') Enter Last Name:
-        input#password(type='text', name='lastName', placeholder='Enter Surname', required)
 
-        label(for='email') Enter Email:
+        label(for='username') Username:
+        input#username(type='text', name='username', placeholder='Enter Username', required)
+
+        label(for='firstName') First Name:
+        input#firstName(type='text', name='firstName', placeholder='Enter First Name', required)
+
+        label(for='lastName') Last Name:
+        input#lastName(type='text', name='lastName', placeholder='Enter Surname', required)
+
+        label(for='email') Email:
         input#email(type='email', name='email', placeholder='Enter Email', required)
 
-        label(for='password') Enter Password: 
+        label(for='password') Password:
         input#password(type='password', name='password', placeholder='Enter Password', required)
+
         button(type='submit') Register
 
       p.register-link

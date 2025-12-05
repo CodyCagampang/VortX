@@ -3,10 +3,77 @@
 /**
  * Module dependencies.
  */
+const app = require('../app');
+const debug = require('debug')('webframeworks-main:server');
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
+const path = require('path');
 
-var app = require('../app');
-var debug = require('debug')('book-code:server');
-var http = require('http');
+// Correct paths to SSL certificates
+const privateKey = fs.readFileSync(path.join(__dirname, '../sslcert/key.pem'), 'utf8');
+const certificate = fs.readFileSync(path.join(__dirname, '../sslcert/cert.pem'), 'utf8');
+const credentials = { key: privateKey, cert: certificate };
+
+// Ports
+const httpPort = normalizePort(process.env.PORT || '8000');
+const httpsPort = normalizePort('443');
+
+// Set HTTP port
+app.set('port', httpPort);
+
+// Create servers
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(credentials, app);
+
+// Start servers
+httpServer.listen(httpPort);
+httpsServer.listen(httpsPort);
+
+httpServer.on('error', onError);
+httpsServer.on('error', onError);
+
+httpServer.on('listening', () => {
+  console.log('HTTP server running on port ' + httpPort);
+});
+
+httpsServer.on('listening', () => {
+  console.log('HTTPS server running on port ' + httpsPort);
+});
+
+/**
+ * Helper functions
+ */
+
+function normalizePort(val) {
+  const port = parseInt(val, 10);
+  if (isNaN(port)) return val;
+  if (port >= 0) return port;
+  return false;
+}
+
+function onError(error) {
+  if (error.syscall !== 'listen') throw error;
+
+  const bind =
+    typeof error.port === 'string' ? 'Pipe ' + error.port : 'Port ' + error.port;
+
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+
+
 
 /**
  * Get port from environment and store in Express.

@@ -1,10 +1,5 @@
-const request = require('request');
-const apiOptions = {
-  server : 'http://localhost:3000'
-};
-if (process.env.NODE_ENV === 'production') {
-  apiOptions.server = 'https://vortxdb.onrender.com';
-}
+const passport = require('passport');
+const User = require('../../app_api/models/users');
 
 const register = function(req, res){
   res.render('register', {
@@ -12,36 +7,38 @@ const register = function(req, res){
     hideNavbar: true,
     pageHeader: {
       title: 'Join VortX',
-      strapline: 'Create your basketball database account',  
+      strapline: 'Create your basketball database account'
     }
   });
 };
 
-const doRegister = function(req, res){
-    const path = '/api/register';
 
-    const requiredData = {
-      username: req.body.username,
-      password: req.body.password
-    };
+const doRegister = function(req, res) {
+  const user = new User({
+    username: req.body.username,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email
+  });
 
-    const requestOptions = {
-        url : apiOptions.server + path,
-        method : 'POST',
-        json: requiredData
-    };
+  User.register(user, req.body.password, function(err, account) {
+    if (err) {
+      return res.render('register', {
+        title: 'Register for VortX',
+        hideNavbar: true,
+        pageHeader: {
+          title: 'Join VortX',
+          strapline: 'Create your VortX account!'
+        },
+        error: err.message
+      });
+    }
 
-    request(requestOptions, function(err, response, body) {
-      if(response.statusCode === 201) {
-        return res.redirect('/login'); // ChatGPT used to redirect to the login page
-      } else {
-        return res.render('register', {
-          title: 'Register for VortX',
-          hideNavbar: true,
-          error: body.message
-        });
-      }
+    // Auto login after registration
+    passport.authenticate('local')(req, res, function () {
+      res.redirect('/');
     });
+  });
 };
 
 module.exports = {

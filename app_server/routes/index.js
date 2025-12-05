@@ -18,9 +18,21 @@ router.get('/stats/west', ctrlWestStats.westTeamStats);
 router.get('/stats/east', ctrlEastStats.eastTeamStats);
 
 /* Login/Register Page */
-router.get('/login', ctrlLogin.login);
-router.get('/register', ctrlRegister.register);
+router
+  .route('/register')
+  .get(ctrlRegister.register)
+  .post(ctrlRegister.doRegister);
 
+router
+  .route('/login')
+  .get(ctrlLogin.login)
+  .post(ctrlLogin.doLogin);
+
+router.get('/logout', (req,res) => {
+  req.logout(() => {
+    res.redirect('/');
+  });
+});
 /* Other pages */
 router.get('/about', ctrlOthers.about);
 
