@@ -3,93 +3,26 @@
 /**
  * Module dependencies.
  */
+
 const app = require('../app');
-const debug = require('debug')('webframeworks-main:server');
+const debug = require('debug')('vortx:server');
 const http = require('http');
-const https = require('https');
-const fs = require('fs');
-const path = require('path');
-
-// Correct paths to SSL certificates
-const privateKey = fs.readFileSync(path.join(__dirname, '../sslcert/key.pem'), 'utf8');
-const certificate = fs.readFileSync(path.join(__dirname, '../sslcert/cert.pem'), 'utf8');
-const credentials = { key: privateKey, cert: certificate };
-
-// Ports
-const httpPort = normalizePort(process.env.PORT || '8000');
-const httpsPort = normalizePort('443');
-
-// Set HTTP port
-app.set('port', httpPort);
-
-// Create servers
-const httpServer = http.createServer(app);
-const httpsServer = https.createServer(credentials, app);
-
-// Start servers
-httpServer.listen(httpPort);
-httpsServer.listen(httpsPort);
-
-httpServer.on('error', onError);
-httpsServer.on('error', onError);
-
-httpServer.on('listening', () => {
-  console.log('HTTP server running on port ' + httpPort);
-});
-
-httpsServer.on('listening', () => {
-  console.log('HTTPS server running on port ' + httpsPort);
-});
-
-/**
- * Helper functions
- */
-
-function normalizePort(val) {
-  const port = parseInt(val, 10);
-  if (isNaN(port)) return val;
-  if (port >= 0) return port;
-  return false;
-}
-
-function onError(error) {
-  if (error.syscall !== 'listen') throw error;
-
-  const bind =
-    typeof error.port === 'string' ? 'Pipe ' + error.port : 'Port ' + error.port;
-
-  switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
-}
-
-
-
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+const server = http.createServer(app);
 
 /**
- * Listen on provided port, on all network interfaces.
+ * Listen on provided port.
  */
 
 server.listen(port);
@@ -101,18 +34,14 @@ server.on('listening', onListening);
  */
 
 function normalizePort(val) {
-  var port = parseInt(val, 10);
+  const port = parseInt(val, 10);
 
   if (isNaN(port)) {
-    // named pipe
-    return val;
+    return val; // Named pipe
   }
-
   if (port >= 0) {
-    // port number
-    return port;
+    return port; // Port number
   }
-
   return false;
 }
 
@@ -125,11 +54,8 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 
-  // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges');
@@ -149,9 +75,10 @@ function onError(error) {
  */
 
 function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  const addr = server.address();
+  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+  console.log('Server running on ' + bind);
 }
+
+
+// Used CHATGPT to allow the http port to run on Render
